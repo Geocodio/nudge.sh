@@ -29,9 +29,8 @@ class ValidPhoneNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        $phoneNumberWithoutCountryCode = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
         try {
-            $result = $this->twilioClient->lookups->v1->phoneNumbers('+1' . $phoneNumberWithoutCountryCode)
+            $result = $this->twilioClient->lookups->v1->phoneNumbers('+1' . $value)
                 ->fetch();
         } catch (RestException $e) {
             return false;

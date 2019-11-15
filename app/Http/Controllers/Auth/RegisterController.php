@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Rules\ValidPhoneNumber;
+use App\Rules\UniquePhoneNumber;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -50,7 +51,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'phone' => ['required', 'unique:users', app()->make(ValidPhoneNumber::class)],
+            'phone' => ['required', new UniquePhoneNumber, app()->make(ValidPhoneNumber::class)],
         ]);
     }
 
@@ -62,7 +63,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $phoneNumber = filter_var($data['phone'], FILTER_SANITIZE_NUMBER_INT);
+        $phoneNumber = preg_replace('~\D~', '', $data['phone']);
 
         return User::create([
             'phone' => $phoneNumber,
