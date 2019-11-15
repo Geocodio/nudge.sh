@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use App\Nudge;
 use App\Http\Controllers\Controller;

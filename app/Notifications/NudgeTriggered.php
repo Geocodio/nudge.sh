@@ -46,7 +46,7 @@ class NudgeTriggered extends Notification implements ShouldQueue
         if (strlen($this->nudge->output) > 0) {
             $message .= ' See output at: ' . url('output/' . $this->nudge->slug);
         } else {
-            $message .= ' No output was captured.'
+            $message .= ' No output was captured.';
         }
 
         return (new TwilioSmsMessage())
