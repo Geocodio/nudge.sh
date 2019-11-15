@@ -2,7 +2,7 @@
 
 namespace App;
 
-use BaoPham\DynamoDb\DynamoDbModel as Model;
+use Illuminate\Database\Eloquent\Model;
 
 class Nudge extends Model
 {
