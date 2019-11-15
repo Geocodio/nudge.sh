@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('Twilio\Rest\Client', function ($app) {
+            return new \Twilio\Rest\Client(config('services.twilio.sid'), config('services.twilio.token'));
+        });
     }
 
     /**

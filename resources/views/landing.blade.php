@@ -11,7 +11,7 @@
             <div class="w-3 h-3 rounded-full mx-1 bg-green-400"></div>
         </div>
         <div class="bg-gray-900 text-white font-mono whitespace-pre p-4 text-left overflow-y-scroll">
-$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/TokN</span>
+$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>
         </div>
     </div>
 
@@ -28,6 +28,7 @@ $ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl 
     </div>
 
     <div class="bg-purple-500 text-white my-10 py-8">
+        @guest
         <h2 class="text-center font-bold text-2xl">Five notifications free per day</h2>
         <h2 class="text-center font-bold text-lg mt-2">Just enter your phone number to get your own code</h2>
 
@@ -41,13 +42,22 @@ $ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl 
             </div>
 
             @error('phone')
-                <p class="text-red-500 text-xs italic mb-4">
+                <p class="text-red-300 text-xs italic mb-4">
                 {{ $message }}
                 </p>
             @enderror
 
             <p class="text-gray-200 text-xs italic">US Phone numbers only (for now). We never share your phone number or use it for any other purposes. This service is provided as-is and solely to make your life a little bit easier.</p>
         </form>
+        @endguest
+
+        @auth
+            <div class="text-center leading-loose">
+                <h2 class="font-bold text-2xl">You're in!</h2>
+                <p>Your personal code is <span class="bg-purple-800 rounded p-1 text-lg">{{ $user->code }}</span></p>
+                <p>It works as a write-only API token for sending notifications &mdash; just make sure to include it with all API calls.</p>
+            </div>
+        @endauth
     </div>
 
 @endsection
