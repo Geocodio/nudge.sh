@@ -4,15 +4,23 @@
     <h1 class="text-center font-bold text-4xl mb-4">Super simple notifications</h1>
     <h2 class="text-center font-bold text-2xl">For long-running command line tasks</h2>
 
-    <div class="max-w-3xl mx-auto my-8">
+    <div class="max-w-3xl mx-auto my-8 hidden sm:block">
         <div class="w-full h-5 bg-gray-200 rounded-tl rounded-tr flex items-center">
             <div class="w-3 h-3 rounded-full mx-1 bg-red-400"></div>
             <div class="w-3 h-3 rounded-full mx-1 bg-yellow-600"></div>
             <div class="w-3 h-3 rounded-full mx-1 bg-green-400"></div>
         </div>
-        <div class="bg-gray-900 text-white font-mono whitespace-pre p-4 text-left overflow-y-scroll">
-$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>
+        <div class="bg-gray-900 text-white font-mono whitespace-pre p-2 sm:p-4 text-left overflow-y-scroll leading-normal text-xs sm:text-base">$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto my-8 block sm:hidden">
+        <div class="w-full h-5 bg-gray-200 rounded-tl rounded-tr flex items-center">
+            <div class="w-3 h-3 rounded-full mx-1 bg-red-400"></div>
+            <div class="w-3 h-3 rounded-full mx-1 bg-yellow-600"></div>
+            <div class="w-3 h-3 rounded-full mx-1 bg-green-400"></div>
         </div>
+        <div class="bg-gray-900 text-white font-mono whitespace-pre p-2 sm:p-4 text-left overflow-y-scroll leading-normal text-xs sm:text-base">$ mysql < large_database_dump.sh | \
+<span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span></div>
     </div>
 
     <svg class="mx-auto relative" style="right: 75px;" height="100" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M67.007 86.304a.99.99 0 0 1-.363-.069C49.315 79.48 37.538 69.084 31.638 55.337c-9.513-22.169-.137-45.609-.041-45.844a1 1 0 0 1 1.851.758c-.093.227-9.153 22.927.036 44.315 5.682 13.228 17.083 23.256 33.887 29.807a1 1 0 0 1-.364 1.931z"/><path d="M52.667 91.128a1.001 1.001 0 0 1-.3-1.955l13.946-4.382-10.23-12.562a1 1 0 0 1 1.551-1.263l11.162 13.706a1 1 0 0 1-.475 1.585l-15.353 4.824a.984.984 0 0 1-.301.047z"/></svg>
@@ -27,7 +35,7 @@ $ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl 
         </div>
     </div>
 
-    <div class="bg-purple-500 text-white my-10 py-8">
+    <div class="bg-purple-500 text-white -mx-4 my-10 px-4 py-8">
         @guest
         <h2 class="text-center font-bold text-2xl">Five notifications free per day</h2>
         <h2 class="text-center font-bold text-lg mt-2">Just enter your phone number to get your own code</h2>
@@ -58,6 +66,22 @@ $ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl 
                 <p>It works as a write-only API token for sending notifications &mdash; just make sure to include it with all API calls.</p>
             </div>
         @endauth
+    </div>
+
+    <h2 class="text-center font-bold text-2xl">More examples</h2>
+
+    <div class="max-w-4xl mx-auto my-4">
+        <div class="w-full h-5 bg-gray-200 rounded-tl rounded-tr flex items-center">
+            <div class="w-3 h-3 rounded-full mx-1 bg-red-400"></div>
+            <div class="w-3 h-3 rounded-full mx-1 bg-yellow-600"></div>
+            <div class="w-3 h-3 rounded-full mx-1 bg-green-400"></div>
+        </div>
+        <div class="bg-gray-900 text-white font-mono whitespace-pre p-2 sm:p-4 text-left overflow-y-scroll leading-normal text-xs sm:text-base"># Don't store output
+$ node slow_script.js; <span class="bg-purple-800 rounded p-1">curl https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>
+
+# Notify after cron job has been run
+$ crontab -e
+0 5 * * 1 tar -zcf /var/backup.tar.gz /home/ | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span></div>
     </div>
 
 @endsection

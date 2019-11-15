@@ -11,7 +11,7 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
-<div class="my-8">
+<div class="my-8 mx-4">
     @yield('content')
 
     <div class="text-center mt-4 text-xs text-gray-700">Made with ❤️ by <a href="http://dotsqua.re">Dotsquare</a> in Arlington, VA</div>
