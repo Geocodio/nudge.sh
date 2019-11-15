@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Ramsey\Uuid\Uuid;
 use App\User;
 use App\Nudge;
@@ -19,14 +20,17 @@ class NudgeController extends Controller
         $user = User::where('code', $nudgeCode)->firstOrFail();
 
         if ($user->nudges()->where('created_at', '>', now()->startOfDay())->count() > self::MAX_NUDGES_PER_DAY) {
-            abort(429);
+            return response()->json([
+                'success' => false,
+                'message' => 'You have reached the limit of messages today. Please reach out to me@codemonkey.io if you think you need a higher limit.'
+            ], 429);
         }
 
         $output = $request->getContent();
 
         $nudge = new Nudge();
         $nudge->slug = Uuid::uuid4();
-        $nudge->output = $output;
+        $nudge->output = strlen($output) > 0 ? Crypt::encryptString($output) : null;
         $user->nudges()->save($nudge);
 
         $user->notify(new NudgeTriggered($nudge));

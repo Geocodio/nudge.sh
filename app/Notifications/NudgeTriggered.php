@@ -41,8 +41,16 @@ class NudgeTriggered extends Notification implements ShouldQueue
 
     public function toTwilio($notifiable)
     {
+        $message = 'Your command-line task completed.';
+
+        if (strlen($this->nudge->output) > 0) {
+            $message .= ' See output at: ' . url('output/' . $this->nudge->slug);
+        } else {
+            $message .= ' No output was captured.'
+        }
+
         return (new TwilioSmsMessage())
-            ->content('Your command-line task completed. See output at: ' . url('output/' . $this->nudge->slug));
+            ->content($message);
     }
 
     /**

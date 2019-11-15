@@ -11,7 +11,11 @@ class OutputController extends Controller
     public function __invoke(Request $request, string $slug) {
         $nudge = Nudge::where('slug', $slug)->firstOrFail();
 
-        return response($nudge->output, 200)
+        $output = $nudge->output
+            ? Crypt::decryptString($nudge->output)
+            : '< No output recorded >';
+
+        return response($output, 200)
             ->header('Content-Type', 'text/plain');
     }
 }
