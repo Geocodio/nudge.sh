@@ -34,7 +34,9 @@ class NudgeTriggered extends Notification
      */
     public function via($notifiable)
     {
-        return [TwilioChannel::class];
+        return [
+            TwilioChannel::class
+        ];
     }
 
     public function toTwilio($notifiable)

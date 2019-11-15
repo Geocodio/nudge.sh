@@ -11,8 +11,17 @@ use App\Notifications\NudgeTriggered;
 
 class NudgeController extends Controller
 {
+    const MAX_NUDGES_PER_DAY = 5;
+
     public function __invoke(Request $request, string $nudgeCode) {
+        info('Got nudge from ' . $nudgeCode);
+
         $user = User::where('code', $nudgeCode)->firstOrFail();
+
+        if ($user->nudges()->where('created_at', '>', now()->startOfDay())->count() > self::MAX_NUDGES_PER_DAY) {
+            abort(429);
+        }
+
         $output = $request->getContent();
 
         $nudge = new Nudge();
@@ -21,5 +30,7 @@ class NudgeController extends Controller
         $user->nudges()->save($nudge);
 
         $user->notify(new NudgeTriggered($nudge));
+
+        return response()->json(['success' => true]);
     }
 }
