@@ -10,7 +10,7 @@ use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
 use App\Nudge;
 
-class NudgeTriggered extends Notification
+class NudgeTriggered extends Notification implements ShouldQueue
 {
     use Queueable;
 
