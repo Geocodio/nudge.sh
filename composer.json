@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^1.0",
-        "laravel/vapor-core": "^2.2"
+        "laravel/vapor-core": "^2.2",
+        "baopham/dynamodb": "dev-master"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
@@ -58,5 +59,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "url": "https://github.com/MiniCodeMonkey/laravel-dynamodb.git",
+            "type": "vcs"
+        }
+    ]
 }
