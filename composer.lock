@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39a8d14dcd8d5fba5afa2f3bfcddd120",
+    "content-hash": "adfcb3f2ca74692b928d912f17457ae7",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -800,6 +800,61 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "laravel-notification-channels/twilio",
+            "version": "2.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-notification-channels/twilio.git",
+                "reference": "a5321d0a1f3a4a21091c6f408dfcd744d4dedb42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-notification-channels/twilio/zipball/a5321d0a1f3a4a21091c6f408dfcd744d4dedb42",
+                "reference": "a5321d0a1f3a4a21091c6f408dfcd744d4dedb42",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/events": "^5.1|^6.0",
+                "illuminate/notifications": "^5.1|^6.0",
+                "illuminate/queue": "^5.1|^6.0",
+                "illuminate/support": "^5.1|^6.0",
+                "php": ">=5.5.9",
+                "twilio/sdk": "~5.16"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NotificationChannels\\Twilio\\TwilioProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NotificationChannels\\Twilio\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gregorio Hernández Caso",
+                    "email": "gregoriohc@gmail.com",
+                    "homepage": "https://github.com/gregoriohc",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A boilerplate for contributions.",
+            "homepage": "https://github.com/laravel-notification-channels/twilio",
+            "time": "2019-09-15T13:08:33+00:00"
         },
         {
             "name": "laravel/framework",

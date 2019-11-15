@@ -14,5 +14,3 @@
 Route::get('/', 'HomeController');
 
 Auth::routes();
-
-
