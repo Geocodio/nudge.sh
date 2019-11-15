@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'HomeController');
+Route::get('/output/{slug}', 'OutputController');
 
 Auth::routes();
