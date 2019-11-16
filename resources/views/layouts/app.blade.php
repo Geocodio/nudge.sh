@@ -14,7 +14,7 @@
 <div class="my-8 mx-4">
     @yield('content')
 
-    <div class="text-center mt-4 text-xs text-gray-700">Made with ❤️ by <a href="http://dotsqua.re">Dotsquare</a> in Arlington, VA</div>
+    <div class="text-center mt-4 text-xs text-gray-700">Made with ❤️ by <a href="https://www.geocod.io" class="text-blue-600 hover:text-gray-800">Geocodio</a> in Arlington, VA. <a href="https://github.com/geocodio/nudge.sh" class="text-blue-600 hover:text-gray-800">Source on GitHub</a>.</div>
 </div>
 </body>
 </html>
