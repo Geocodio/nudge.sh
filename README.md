@@ -11,11 +11,15 @@
 ### Install dependencies
 ```
 composer install
-npm
+npm install
 ```
 
 ### Development server
 ```
+# Run database migrations
+php artisan migrate
+
+# Start development server and frontend asset watcher
 php artisan serve
 npm run watch
 ```
