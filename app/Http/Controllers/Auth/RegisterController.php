@@ -2,44 +2,50 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Rules\ValidPhoneNumber;
 use App\Rules\UniquePhoneNumber;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
-    use RegistersUsers;
-
     /**
-     * Where to redirect users after registration.
+     * Handle a registration request for the application.
      *
-     * @var string
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function register(Request $request)
     {
-        $this->middleware('guest');
+        $input = $this->getInputFromRequest($request);
+        $this->validator($input)->validate();
+
+        $user = $this->find($input);
+
+        if (!$user) {
+            $user = $this->create($input);
+        }
+
+        Auth::login($user);
+
+        return redirect('/');
+    }
+
+    /**
+     * Pre-process request input
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    private function getInputFromRequest(Request $request): array {
+        $phoneNumber = preg_replace('~\D~', '', $request->input('phone'));
+
+        return [
+            'phone' => $phoneNumber
+        ];
     }
 
     /**
@@ -51,8 +57,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'phone' => ['required', new UniquePhoneNumber, app()->make(ValidPhoneNumber::class)],
+            'phone' => ['required', app()->make(ValidPhoneNumber::class)],
         ]);
+    }
+
+    /**
+     * Find existing user from input data
+     *
+     * @param  array  $data
+     * @return \App\User|null
+     */
+    protected function find(array $data): ?User
+    {
+        return User::where('phone', $data['phone'])
+            ->first();
     }
 
     /**
@@ -61,16 +79,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
-        $phoneNumber = preg_replace('~\D~', '', $data['phone']);
-
         return User::create([
-            'phone' => $phoneNumber,
+            'phone' => $data['phone'],
             'code' => $this->generateCode()
         ]);
     }
 
+    /**
+     * Generate an unique 4 character code for a newly registered user
+     *
+     * @return string
+     */
     private function generateCode(): string {
         do {
             $code = bin2hex(openssl_random_pseudo_bytes(2));

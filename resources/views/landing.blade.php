@@ -5,9 +5,9 @@
     <h2 class="text-center font-bold text-2xl">For long-running command line tasks</h2>
 
 @component('elements.terminal', ['responsive' => 'small'])$ mysql < large_database_dump.sh | \
-<span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>@endcomponent
+<span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'YOUR_TOKEN' }}</span>@endcomponent
 
-@component('elements.terminal', ['responsive' => 'large'])$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>@endcomponent
+@component('elements.terminal', ['responsive' => 'large'])$ mysql < large_database_dump.sh | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'YOUR_TOKEN' }}</span>@endcomponent
 
     <svg class="mx-auto relative" style="right: 75px;" height="100" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M67.007 86.304a.99.99 0 0 1-.363-.069C49.315 79.48 37.538 69.084 31.638 55.337c-9.513-22.169-.137-45.609-.041-45.844a1 1 0 0 1 1.851.758c-.093.227-9.153 22.927.036 44.315 5.682 13.228 17.083 23.256 33.887 29.807a1 1 0 0 1-.364 1.931z"/><path d="M52.667 91.128a1.001 1.001 0 0 1-.3-1.955l13.946-4.382-10.23-12.562a1 1 0 0 1 1.551-1.263l11.162 13.706a1 1 0 0 1-.475 1.585l-15.353 4.824a.984.984 0 0 1-.301.047z"/></svg>
 
@@ -57,10 +57,10 @@
     <h2 class="text-center font-bold text-2xl">More examples</h2>
 
 @component('elements.terminal')# Don't store output
-$ node slow_script.js; <span class="bg-purple-800 rounded p-1">curl https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>@endcomponent
+$ node slow_script.js; <span class="bg-purple-800 rounded p-1">curl https://nudge.sh/{{ $user ? $user->code : 'YOUR_TOKEN' }}</span>@endcomponent
 
 @component('elements.terminal')# Notify after cron job has been run
 $ crontab -e
-0 5 * * 1 tar -zcf /var/backup.tar.gz /home/ | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'TokN' }}</span>@endcomponent
+0 5 * * 1 tar -zcf /var/backup.tar.gz /home/ | <span class="bg-purple-800 rounded p-1">curl -X POST -d @- https://nudge.sh/{{ $user ? $user->code : 'YOUR_TOKEN' }}</span>@endcomponent
 
 @endsection

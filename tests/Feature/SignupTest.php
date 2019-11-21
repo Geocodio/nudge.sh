@@ -46,10 +46,10 @@ class SignupTest extends TestCase
     {
         User::create(['phone' => '8559108712', 'code' => 'foo']);
 
-        $response = $this->post('/register', ['phone' => '855-910-8712']);
+        $response = $this->followingRedirects()
+            ->post('/register', ['phone' => '855-910-8712']);
 
-        $response->assertRedirect('/');
-        $response->assertSessionHasErrors(['phone']);
+        $response->assertSee('https://nudge.sh/foo');
     }
 
 }

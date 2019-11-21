@@ -14,4 +14,4 @@
 Route::get('/', 'HomeController');
 Route::get('/output/{slug}', 'OutputController');
 
-Auth::routes();
+Route::post('register', 'Auth\RegisterController@register')->name('register');
