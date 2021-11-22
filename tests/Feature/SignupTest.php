@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use App\User;
 
 class SignupTest extends TestCase
 {
@@ -51,5 +51,4 @@ class SignupTest extends TestCase
 
         $response->assertSee('https://nudge.sh/foo');
     }
-
 }

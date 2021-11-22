@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Twilio\Rest\Client;
 use Twilio\Exceptions\RestException;
+use Twilio\Rest\Client;
 
 class ValidPhoneNumber implements Rule
 {
@@ -30,7 +30,7 @@ class ValidPhoneNumber implements Rule
     public function passes($attribute, $value)
     {
         try {
-            $result = $this->twilioClient->lookups->v1->phoneNumbers('+1' . $value)
+            $result = $this->twilioClient->lookups->v1->phoneNumbers('+1'.$value)
                 ->fetch();
         } catch (RestException $e) {
             return false;

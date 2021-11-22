@@ -19,8 +19,8 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         Illuminate\Notifications\Events\NotificationFailed::class => [
-            HandleNotificationFailedEvent::class
-        ]
+            HandleNotificationFailedEvent::class,
+        ],
     ];
 
     /**

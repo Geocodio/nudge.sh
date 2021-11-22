@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Rules\ValidPhoneNumber;
 use App\Rules\UniquePhoneNumber;
+use App\Rules\ValidPhoneNumber;
 use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -25,7 +25,7 @@ class RegisterController extends Controller
 
         $user = $this->find($input);
 
-        if (!$user) {
+        if (! $user) {
             $user = $this->create($input);
         }
 
@@ -40,11 +40,12 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    private function getInputFromRequest(Request $request): array {
+    private function getInputFromRequest(Request $request): array
+    {
         $phoneNumber = preg_replace('~\D~', '', $request->input('phone'));
 
         return [
-            'phone' => $phoneNumber
+            'phone' => $phoneNumber,
         ];
     }
 
@@ -83,7 +84,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'phone' => $data['phone'],
-            'code' => $this->generateCode()
+            'code' => $this->generateCode(),
         ]);
     }
 
@@ -92,7 +93,8 @@ class RegisterController extends Controller
      *
      * @return string
      */
-    private function generateCode(): string {
+    private function generateCode(): string
+    {
         do {
             $code = bin2hex(openssl_random_pseudo_bytes(2));
         } while (User::where('code', $code)->count() > 0);
