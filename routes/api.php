@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NudgeController;
 use Illuminate\Http\Request;
 
 /*
@@ -13,4 +14,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/{nudgeCode}', 'NudgeController');
+Route::post('/{nudgeCode}', NudgeController::class);
