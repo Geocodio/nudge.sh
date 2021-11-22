@@ -14,4 +14,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('/{nudgeCode}', NudgeController::class);
+Route::match(['get', 'post'], '/{nudgeCode}', NudgeController::class);
