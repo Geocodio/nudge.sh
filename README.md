@@ -16,12 +16,14 @@ npm install
 
 ### Development server
 ```
-# Run database migrations
-php artisan migrate
+# Launch development server
+sail up
 
-# Start development server and frontend asset watcher
-php artisan serve
-npm run watch
+# Run database migrations
+sail artisan migrate
+
+# Start frontend asset watcher
+sail npm run watch
 ```
 
 ## Deployment
