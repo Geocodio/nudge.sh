@@ -10,15 +10,15 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.19",
+        "axios": "^0.24.0",
         "laravel-mix": "^6.0.12",
         "laravel-mix-purgecss": "^6.0.0",
         "lodash": "^4.17.13",
-        "resolve-url-loader": "^2.3.1",
+        "postcss": "^8.2.8",
+        "resolve-url-loader": "^4.0.0",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "tailwindcss": "^1.0",
-        "vue-template-compiler": "^2.6.10",
-        "postcss": "^8.2.8"
+        "vue-template-compiler": "^2.6.10"
     }
 }
