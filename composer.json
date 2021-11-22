@@ -9,9 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.0",
-        "fideloper/proxy": "^4.4",
         "laravel-notification-channels/twilio": "^3.1",
-        "laravel/framework": "^7.29",
+        "laravel/framework": "^8.73",
         "laravel/tinker": "^2.5",
         "laravel/vapor-core": "^2.16",
         "ramsey/uuid": "^4.2",
@@ -20,11 +19,11 @@
         "guzzlehttp/guzzle": "^6.3.1|^7.0.1"
     },
     "require-dev": {
-        "facade/ignition": "^2.0",
-        "laravel-frontend-presets/tailwindcss": "^4.2",
-        "mockery/mockery": "^1.3.1",
-        "nunomaduro/collision": "^4.3",
-        "phpunit/phpunit": "^8.5.8|^9.3.3",
+        "facade/ignition": "^2.5",
+        "laravel-frontend-presets/tailwindcss": "^4.3",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^5.10",
+        "phpunit/phpunit": "^9.5.10",
         "fakerphp/faker": "^1.9.1"
     },
     "config": {
@@ -61,6 +60,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
         ]
     }
 }
