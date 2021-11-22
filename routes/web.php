@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OutputController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +16,7 @@
 |
 */
 
-Route::get('/', 'HomeController');
-Route::get('/output/{slug}', 'OutputController');
+Route::get('/', HomeController::class);
+Route::get('/output/{slug}', OutputController::class);
 
-Route::post('register', 'Auth\RegisterController@register')->name('register');
+Route::post('register', [Auth\RegisterController::class, 'register'])->name('register');
