@@ -36,11 +36,13 @@ class User extends Authenticatable
         'phone_verified_at' => 'datetime',
     ];
 
-    public function nudges() {
+    public function nudges()
+    {
         return $this->hasMany(Nudge::class);
     }
 
-    public function routeNotificationForTwilio() {
-        return '+1' . $this->phone;
+    public function routeNotificationForTwilio()
+    {
+        return '+1'.$this->phone;
     }
 }

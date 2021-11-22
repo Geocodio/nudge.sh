@@ -2,13 +2,13 @@
 
 namespace App\Notifications;
 
+use App\Nudge;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Twilio\TwilioChannel;
 use NotificationChannels\Twilio\TwilioSmsMessage;
-use App\Nudge;
 
 class NudgeTriggered extends Notification implements ShouldQueue
 {
@@ -35,7 +35,7 @@ class NudgeTriggered extends Notification implements ShouldQueue
     public function via($notifiable)
     {
         return [
-            TwilioChannel::class
+            TwilioChannel::class,
         ];
     }
 
@@ -44,7 +44,7 @@ class NudgeTriggered extends Notification implements ShouldQueue
         $message = 'Your command-line task completed.';
 
         if (strlen($this->nudge->output) > 0) {
-            $message .= ' See output at: ' . url('output/' . $this->nudge->slug);
+            $message .= ' See output at: '.url('output/'.$this->nudge->slug);
         } else {
             $message .= ' No output was captured.';
         }
