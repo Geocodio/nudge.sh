@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\OutputController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OutputController;
 use Illuminate\Support\Facades\Route;
 
 /*
