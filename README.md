@@ -2,8 +2,8 @@
 
 ## Stack
 
-* **Backend:** Laravel 6
-* **Frontend:** Tailwind CSS
+* **Backend:** Laravel 8
+* **Frontend:** Tailwind CSS (v1.0)
 * **Infrastructure:** Hosted on AWS Lambda via Laravel Vapor
 
 ## Development
