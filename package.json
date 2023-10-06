@@ -12,7 +12,7 @@
     "devDependencies": {
         "laravel-mix": "^6.0.12",
         "laravel-mix-purgecss": "^6.0.0",
-        "postcss": "^8.3.11",
+        "postcss": "^8.4.31",
         "tailwindcss": "^1.0"
     }
 }
